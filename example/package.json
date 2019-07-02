@@ -4,18 +4,17 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "postinstall": "node ../scripts/examples_postinstall.js"
+    "test": "jest"
   },
   "dependencies": {
     "react": "16.8.3",
     "react-native": "0.59.9",
-    "react-native-peek-and-pop": "file:../"
+    "@babel/runtime": "^7.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "@babel/runtime": "^7.4.5",
     "babel-jest": "^24.8.0",
+    "glob-to-regexp": "^0.4.1",
     "jest": "^24.8.0",
     "metro-react-native-babel-preset": "^0.54.1",
     "react-test-renderer": "16.8.3"

@@ -131,7 +131,10 @@
   while (![superScreen isKindOfClass:RCTRootView.class] && !isRNScreen) {
     superScreen  = [superScreen reactSuperview];
     NSString *name = NSStringFromClass ([superScreen class]);
-    // not good
+    // React-native-screens changes react hierarchy and searching
+    // for root view is not positive. It does not follow any 
+    // good programming rules but I wished not to add RNS as
+    // a dependency and make it workable and without this lib 
     isRNScreen = ([name isEqualToString:@"RNScreenView"]);
   }
   
@@ -148,7 +151,7 @@
 
 - (void)invalidate
 {
-  // TODO: maybe not needed. Maybe memory leak
+  // TODO: maybe not needed. Maybe memory leak?
   // [_screenController unregisterForPreviewingWithContext:_previewController];
   _previewController.view = nil;
   _previewController = nil;

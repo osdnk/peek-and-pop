@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import PeekAndPop from 'react-native-peek-and-pop';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>

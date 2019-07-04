@@ -1,38 +1,53 @@
 {
   "name": "react-native-peek-and-pop",
-  "title": "React Native Peek And Pop",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "version": "0.1.0",
+  "description": "React Native component which exposes the peek and pop pattern on iOS",
+  "keywords": [
+    "react-native",
+    "ios",
+    "peek",
+    "pop"
+  ],
+  "author": "Michał Osadnik <micosa97@gmail.com> (https://github.com/osdnk/)",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-peek-and-pop.git",
-    "baseUrl": "https://github.com/github_account/react-native-peek-and-pop"
+    "url": "git+https://github.com/github_account/react-native-peek-and-pop.git"
   },
-  "keywords": [
-    "react-native"
+  "main": "lib/module/index.js",
+  "types": "lib/typescript/src/index.d.ts",
+  "files": [
+    "src",
+    "lib"
   ],
-  "author": {
-    "name": "Your Name",
-    "email": "yourname@email.com"
+  "scripts": {
+    "lint": "eslint --ext .js,.ts,.tsx .",
+    "typescript": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "bob build"
   },
-  "license": "Apache-2.0",
-  "licenseFilename": "LICENSE",
-  "readmeFilename": "README.md",
   "peerDependencies": {
     "react": "^16.5.0",
     "react-native": ">=0.57.0-rc.0 <1.0.x"
   },
   "devDependencies": {
+    "@react-native-community/bob": "^0.6.1",
     "@react-native-community/eslint-config": "^0.0.5",
+    "@types/react": "^16.8.23",
+    "@types/react-native": "^0.57.65",
     "eslint": "^6.0.1",
     "eslint-plugin-prettier": "^3.1.0",
     "prettier": "^1.18.2",
     "react": "^16.5.0",
-    "react-native": "^0.59.4"
+    "react-native": "^0.59.4",
+    "typescript": "^3.5.2"
+  },
+  "@react-native-community/bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "module",
+      "typescript"
+    ]
   }
 }

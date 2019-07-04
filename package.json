@@ -1,33 +1,65 @@
 {
   "name": "react-native-peek-and-pop",
-  "title": "React Native Peek And Pop",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "version": "0.1.0",
+  "description": "React Native component which exposes the peek and pop pattern on iOS",
+  "keywords": [
+    "react-native",
+    "ios",
+    "peek",
+    "pop"
+  ],
+  "author": "Michał Osadnik <micosa97@gmail.com> (https://github.com/osdnk/)",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-peek-and-pop.git",
-    "baseUrl": "https://github.com/github_account/react-native-peek-and-pop"
+    "url": "git+https://github.com/github_account/react-native-peek-and-pop.git"
   },
-  "keywords": [
-    "react-native"
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "react-native": "src/index.tsx",
+  "types": "lib/typescript/src/index.d.ts",
+  "files": [
+    "src",
+    "lib"
   ],
-  "author": {
-    "name": "Your Name",
-    "email": "yourname@email.com"
+  "scripts": {
+    "lint": "eslint --ext .js,.ts,.tsx .",
+    "typescript": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "bob build"
   },
-  "license": "Apache-2.0",
-  "licenseFilename": "LICENSE",
-  "readmeFilename": "README.md",
   "peerDependencies": {
     "react": "^16.5.0",
     "react-native": ">=0.57.0-rc.0 <1.0.x"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^8.0.0",
+    "@react-native-community/bob": "^0.6.1",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "@types/react": "^16.8.23",
+    "@types/react-native": "^0.57.65",
+    "commitlint": "^8.0.0",
+    "eslint": "^6.0.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.0",
+    "prettier": "^1.18.2",
     "react": "^16.5.0",
-    "react-native": "^0.59.4"
+    "react-native": "^0.59.4",
+    "typescript": "^3.5.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "yarn lint && yarn typescript"
+    }
+  },
+  "@react-native-community/bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
   }
 }

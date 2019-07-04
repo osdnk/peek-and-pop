@@ -1,56 +1,57 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, Button } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import PeekAndPop from 'react-native-peek-and-pop';
-
-
 
 class App extends Component {
   render() {
     return (
-        <View style={styles.container}>
-          <PeekAndPop
-              renderPreview={() => <View style={{ width: 100, height: 100, backgroundColor: 'blue' }} />}
-              onPeek={() => console.log('onPeek')}
-              onPop={() =>
-                  console.warn("pop")
-              }
-              onDisappear={() => console.log('onDisappear')}
-              previewActions={[
-                {
-                  type: 'destructive',
-                  caption: 'remove',
-                  action: () => console.warn('1'),
-                },
-                {
-                  type: 'destructive',
-                  caption: 'remove2',
-                  action: () => console.warn('2'),
-                },
-                {
-                  caption: 'group',
-                  group: [
-                    {
-                      type: 'selected',
-                      caption: 'selected',
-                      action: () => console.warn('3'),
-                    },
-                    {
-                      type: 'selected',
-                      caption: 'selected2',
-                      action: () => console.warn('4'),
-                    },
-                  ],
-                },
-              ]}>
+      <View style={styles.container}>
+        <PeekAndPop
+          renderPreview={() => (
             <View
-                style={{
-                  backgroundColor: 'red',
-                  width: 130,
-                  height: 130,
-                }}
+              style={{ width: 100, height: 100, backgroundColor: 'blue' }}
             />
-          </PeekAndPop>
-        </View>
+          )}
+          onPeek={() => console.log('onPeek')}
+          onPop={() => console.warn('pop')}
+          onDisappear={() => console.log('onDisappear')}
+          previewActions={[
+            {
+              type: 'destructive',
+              caption: 'remove',
+              action: () => console.warn('1'),
+            },
+            {
+              type: 'destructive',
+              caption: 'remove2',
+              action: () => console.warn('2'),
+            },
+            {
+              caption: 'group',
+              group: [
+                {
+                  type: 'selected',
+                  caption: 'selected',
+                  action: () => console.warn('3'),
+                },
+                {
+                  type: 'selected',
+                  caption: 'selected2',
+                  action: () => console.warn('4'),
+                },
+              ],
+            },
+          ]}
+        >
+          <View
+            style={{
+              backgroundColor: 'red',
+              width: 130,
+              height: 130,
+            }}
+          />
+        </PeekAndPop>
+      </View>
     );
   }
 }

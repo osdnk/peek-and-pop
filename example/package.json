@@ -7,13 +7,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.5",
     "react": "16.8.3",
-    "react-native": "0.59.9",
-    "@babel/runtime": "^7.4.5"
+    "react-native": "0.59.9"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "babel-jest": "^24.8.0",
+    "escape-string-regexp": "^2.0.0",
     "glob-to-regexp": "^0.4.1",
     "jest": "^24.8.0",
     "metro-react-native-babel-preset": "^0.54.1",

@@ -6,6 +6,7 @@ import {
   Dimensions,
   ViewStyle,
   StyleProp,
+  ViewProps,
 } from 'react-native';
 
 type PreviewAction =
@@ -42,7 +43,7 @@ type NativePeekAndPopleViewRef = {
 
 type ActionEvent = { nativeEvent: { key: number } };
 
-type Props = {
+type Props = ViewProps & {
   renderPreview: () => React.ReactNode;
   previewActions?: PreviewAction[];
   onPeek?: () => void;
@@ -56,6 +57,8 @@ type State = {
   traversedActions: TraveresedAction[];
   mappedActions: MappedAction[];
 };
+
+const { width, height } = Dimensions.get('window');
 
 export const NativePeekAndPopleView: React.ComponentType<{
   ref: React.RefObject<NativePeekAndPopleViewRef>;
@@ -143,25 +146,36 @@ export default class PeekableView extends React.Component<Props, State> {
   };
 
   render() {
-    const { width, height } = Dimensions.get('window');
+    const {
+      renderPreview,
+      /* eslint-disable @typescript-eslint/no-unused-vars */
+      previewActions,
+      onPeek,
+      onDisappear,
+      /* eslint-enable @typescript-eslint/no-unused-vars */
+      onPop,
+      children,
+      ...rest
+    } = this.props;
+
     return (
       <React.Fragment>
-        <View {...this.props} ref={this.sourceView}>
+        <View {...rest} ref={this.sourceView}>
           <NativePeekAndPopleView
             // Renders nothing and inside view bound to the screen used by controller
             style={{ width: 0, height: 0 }}
             onDisappear={this.onDisappear}
             onPeek={this.onPeek}
-            onPop={this.props.onPop}
+            onPop={onPop}
             ref={this.preview}
             previewActions={this.state.traversedActions}
             onAction={this.onActionsEvent}
           >
             <View style={{ width, height }}>
-              {this.state.visible ? this.props.renderPreview() : null}
+              {this.state.visible ? renderPreview() : null}
             </View>
           </NativePeekAndPopleView>
-          {this.props.children}
+          {children}
         </View>
       </React.Fragment>
     );

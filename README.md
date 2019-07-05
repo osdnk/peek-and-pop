@@ -46,7 +46,9 @@ export default function App() {
   return (
     <PeekAndPop
       renderPreview={() => (
-        <View style={{ width: 100, height: 100, backgroundColor: 'papayawhip' }} />
+        <View
+          style={{ width: 100, height: 100, backgroundColor: 'papayawhip' }}
+        />
       )}
     >
       <View
@@ -101,28 +103,33 @@ Callback which is called when the preview disappears.
 onDisappear={() => console.log('Disappeared')}
 ```
 
-### `### selected`
+### `previewActions`
 
-Array of object describing actions' layout and behavior.
+Array of action objects to show as action buttons in the preview.
 
-Each object contains of: 
+Each object contains of following properties:
 
-### label
+#### `label`
 
-Label of the button.
+Label text for the button.
 
-### type
+#### `type`
 
-`normal` or `group` (defaults to `normal`). Describe layout of button.
+`normal` or `group` (defaults to `normal`). Controls whether the button has sub-actions.
 
-### selected
+#### `selected`
 
-If type is `normal` defines if tick should be visible or not (default to `false`)
+If `type` is `normal`, then this specifies if a tick mark should be visible or not (default to `false`).
 
-### actions
+#### `onPress`
 
-If type is `group` buttons `previewActions` might be nested under `actions` key.
+If `type` is `normal`, then this specifies the function to call when the button is pressed.
 
+#### `actions`
+
+If `type` is `group`, sub-actions for the group can be nested under `actions` key.
+
+Usage:
 
 ```js
 previewActions={[

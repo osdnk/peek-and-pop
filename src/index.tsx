@@ -11,30 +11,40 @@ import {
 
 type PreviewAction =
   | {
-      type: 'selected' | 'destructive';
-      caption: string;
-      action: () => void;
-      group?: never;
+      type?: 'normal';
+      selected?: boolean;
+      label: string;
+      onPress: () => void;
     }
   | {
-      group: PreviewAction[];
-      caption: string;
-      type?: never;
-      action?: never;
+      type: 'destructive';
+      label: string;
+      onPress: () => void;
+    }
+  | {
+      type: 'group';
+      label: string;
+      actions: PreviewAction[];
     };
 
 type MappedAction = (() => void) | undefined;
 
 type TraveresedAction =
   | {
-      caption: string;
-      group: TraveresedAction[];
+      type: 'normal';
+      selected?: boolean;
+      label: string;
+      onPress: () => void;
     }
   | {
-      group?: never;
-      type: 'selected' | 'destructive';
-      caption: string;
+      type: 'destructive';
+      label: string;
       _key: number;
+    }
+  | {
+      type: 'group';
+      label: string;
+      actions: TraveresedAction[];
     };
 
 type NativePeekAndPopleViewRef = {
@@ -78,18 +88,18 @@ const traverseActions = (
   const traversedAction: TraveresedAction[] = [];
 
   actions.forEach(currentAction => {
-    if (currentAction.group) {
+    if (currentAction.type === 'group') {
       const clonedAction = {
         ...currentAction,
-        group: traverseActions(currentAction.group, actionsMap),
+        actions: traverseActions(currentAction.actions, actionsMap),
       };
 
       traversedAction.push(clonedAction);
     } else {
-      const { action, ...clonedAction } = currentAction;
+      const { onPress, ...clonedAction } = currentAction;
       // @ts-ignore
       clonedAction._key = actionsMap.length;
-      actionsMap.push(action);
+      actionsMap.push(onPress);
       traversedAction.push(clonedAction as TraveresedAction);
     }
   });

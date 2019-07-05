@@ -92,25 +92,27 @@
 {
   NSMutableArray *result = [[NSMutableArray alloc] init];
   for (NSDictionary *action in actions) {
-    if ([action objectForKey:@"group"]) {
-      NSArray<UIPreviewAction *> *innerActions = [self translateToUIPreviewActionStyles: action[@"group"]];
-      UIPreviewActionGroup *previewAction = [UIPreviewActionGroup actionGroupWithTitle:action[@"caption"] style:UIPreviewActionStyleDefault actions:innerActions];
-      [result addObject:previewAction];
-    } else if ([@"selected" isEqualToString:action[@"type"]]) {
-      UIPreviewAction *previewAction = [UIPreviewAction actionWithTitle:action[@"caption"] style:UIPreviewActionStyleSelected handler:^(UIPreviewAction * _Nonnull _, UIViewController * _Nonnull previewViewController) {
-        _onAction(@{@"key": action[@"_key"]});
-      }];
+    if ([@"group" isEqualToString:action[@"type"]]) {
+      NSArray<UIPreviewAction *> *innerActions = [self translateToUIPreviewActionStyles: action[@"actions"]];
+      UIPreviewActionGroup *previewAction = [UIPreviewActionGroup actionGroupWithTitle:action[@"label"] style:UIPreviewActionStyleDefault actions:innerActions];
       [result addObject:previewAction];
     } else if ([@"destructive" isEqualToString:action[@"type"]]) {
-      UIPreviewAction *previewAction = [UIPreviewAction actionWithTitle:action[@"caption"] style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull _, UIViewController * _Nonnull previewViewController) {
+      UIPreviewAction *previewAction = [UIPreviewAction actionWithTitle:action[@"label"] style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull _, UIViewController * _Nonnull previewViewController) {
         _onAction(@{@"key": action[@"_key"]});
       }];
       [result addObject:previewAction];
     } else {
-      UIPreviewAction *previewAction = [UIPreviewAction actionWithTitle:action[@"caption"] style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull _, UIViewController * _Nonnull previewViewController) {
-        _onAction(@{@"key": action[@"_key"]});
-      }];
-      [result addObject:previewAction];
+      if (action[@"selected"] && [[action objectForKey:@"selected"] boolValue]) {
+        UIPreviewAction *previewAction = [UIPreviewAction actionWithTitle:action[@"label"] style:UIPreviewActionStyleSelected handler:^(UIPreviewAction * _Nonnull _, UIViewController * _Nonnull previewViewController) {
+          _onAction(@{@"key": action[@"_key"]});
+        }];
+        [result addObject:previewAction];
+      } else {
+        UIPreviewAction *previewAction = [UIPreviewAction actionWithTitle:action[@"label"] style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull _, UIViewController * _Nonnull previewViewController) {
+          _onAction(@{@"key": action[@"_key"]});
+        }];
+        [result addObject:previewAction];
+      }
     }
   }
   return result;
@@ -132,9 +134,9 @@
     superScreen  = [superScreen reactSuperview];
     NSString *name = NSStringFromClass ([superScreen class]);
     // React-native-screens changes react hierarchy and searching
-    // for root view is not positive. It does not follow any 
+    // for root view is not positive. It does not follow any
     // good programming rules but I wished not to add RNS as
-    // a dependency and make it workable and without this lib 
+    // a dependency and make it workable and without this lib
     isRNScreen = ([name isEqualToString:@"RNScreenView"]);
   }
   
@@ -181,3 +183,4 @@ RCT_EXPORT_VIEW_PROPERTY(onDisappear, RCTDirectEventBlock);
 
 
 @end
+

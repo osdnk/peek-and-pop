@@ -18,26 +18,32 @@ class App extends React.Component {
           previewActions={[
             {
               type: 'destructive',
-              caption: 'remove',
-              action: () => console.warn('1'),
+              label: 'remove',
+              onPress: () => console.warn('1'),
+            },
+            {
+              label: 'normal',
+              onPress: () => console.warn('N'),
             },
             {
               type: 'destructive',
-              caption: 'remove2',
-              action: () => console.warn('2'),
+              label: 'remove2',
+              onPress: () => console.warn('2'),
             },
             {
-              caption: 'group',
-              group: [
+              type: 'group',
+              label: 'group',
+              actions: [
                 {
-                  type: 'selected',
-                  caption: 'selected',
-                  action: () => console.warn('3'),
+                  selected: true,
+                  label: 'selected',
+                  onPress: () => console.warn('3'),
                 },
                 {
-                  type: 'selected',
-                  caption: 'selected2',
-                  action: () => console.warn('4'),
+                  type: 'normal',
+                  selected: false,
+                  label: 'selected2',
+                  onPress: () => console.warn('4'),
                 },
               ],
             },

@@ -101,9 +101,64 @@ Callback which is called when the preview disappears.
 onDisappear={() => console.log('Disappeared')}
 ```
 
-### `previewActions`
+### `### selected`
 
-TODO
+Array of object describing actions' layout and behavior.
+
+Each object contains of: 
+
+### label
+
+Label of the button.
+
+### type
+
+`normal` or `group` (defaults to `normal`). Describe layout of button.
+
+### selected
+
+If type is `normal` defines if tick should be visible or not (default to `false`)
+
+### actions
+
+If type is `group` buttons `previewActions` might be nested under `actions` key.
+
+
+```js
+previewActions={[
+  {
+    type: 'destructive',
+    label: 'remove',
+    onPress: () => {},
+  },
+  {
+    label: 'normal',
+    onPress: () => {},
+  },
+  {
+    type: 'destructive',
+    label: 'remove',
+    onPress: () => {},
+  },
+  {
+    type: 'group',
+    label: 'group',
+    actions: [
+      {
+        selected: true,
+        label: 'selected',
+        onPress: () => {},
+      },
+      {
+        type: 'normal',
+        selected: false,
+        label: 'not selected',
+        onPress: () => {},
+      },
+    ],
+  },
+]}
+```
 
 ## Contributing
 

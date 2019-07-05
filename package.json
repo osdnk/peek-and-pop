@@ -26,6 +26,7 @@
     "lint": "eslint --ext .js,.ts,.tsx .",
     "typescript": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "bootstrap": "yarn --cwd example && yarn",
     "prepare": "bob build"
   },
   "peerDependencies": {

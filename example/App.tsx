@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import PeekAndPop from 'react-native-peek-and-pop';
+import PeekAndPop from '@react-native-community/peek-and-pop';
 
 class App extends React.Component {
   render() {

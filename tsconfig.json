@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "react-native-peek-and-pop": ["./src/index"]
+      "@react-native-community/peek-and-pop": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

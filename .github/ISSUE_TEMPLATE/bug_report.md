@@ -32,10 +32,10 @@ assignees: ''
 
 ### Your Environment
 
-| software                  | version |
-| ------------------------- | ------- |
-| ios                       |
-| react-native              |
-| react-native-peek-and-pop |
-| node                      |
-| npm or yarn               |
+| software                             | version |
+| ------------------------------------ | ------- |
+| ios                                  |
+| react-native                         |
+| @react-native-community/peek-and-pop |
+| node                                 |
+| npm or yarn                          |

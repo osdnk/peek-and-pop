@@ -1,4 +1,4 @@
-# react-native-peek-and-pop
+# @react-native-community/peek-and-pop
 
 React Native component which exposes the Peek and Pop pattern on iOS.
 
@@ -9,13 +9,13 @@ React Native component which exposes the Peek and Pop pattern on iOS.
 Open a Terminal in the project root and run:
 
 ```sh
-yarn add react-native-peek-and-pop
+yarn add @react-native-community/peek-and-pop
 ```
 
 Or if you use `npm`:
 
 ```sh
-npm install react-native-peek-and-pop --save
+npm install @react-native-community/peek-and-pop --save
 ```
 
 ### Linking
@@ -25,13 +25,13 @@ The library includes native code and needs to be linked. If you're using React N
 #### Mostly automatic linking
 
 ```sh
-react-native link react-native-peek-and-pop
+react-native link @react-native-community/peek-and-pop
 ```
 
 #### Manual linking (iOS)
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-peek-and-pop` and add `PeekAndPop.xcodeproj`
+2. Go to `node_modules` ➜ `@react-native-community/peek-and-pop` and add `PeekAndPop.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libPeekAndPop.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
 
@@ -40,7 +40,7 @@ react-native link react-native-peek-and-pop
 ```js
 import * as React from 'react';
 import { View } from 'react-native';
-import PeekAndPop from 'react-native-peek-and-pop';
+import PeekAndPop from '@react-native-community/peek-and-pop';
 
 export default function App() {
   return (

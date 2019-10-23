@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSArray *actionsForPreviewing;
 
 - (instancetype)initWithUIManager:(RCTUIManager *)uiManager;
+- (void)onPeekEvent;
 
 @end
 
@@ -40,9 +41,7 @@
 
 - (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
-  if (_wrapper.onPeek) {
-    _wrapper.onPeek(nil);
-  }
+  [_wrapper onPeekEvent];
   return _wrapper.previewController;
 }
 
@@ -124,6 +123,12 @@
   _previewController.view = super.reactSubviews[0];
 }
 
+-(void)onPeekEvent {
+  if (self.onPeek) {
+    _previewController.preferredContentSize = _previewController.view.bounds.size;
+    self.onPeek(nil);
+  }
+}
 
 - (void)layoutSubviews {
   [super layoutSubviews];

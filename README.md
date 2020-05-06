@@ -24,7 +24,11 @@ The library includes native code and needs to be linked. If you're using React N
 
 #### Mostly automatic linking
 
-```sh
+```
+# RN >= 0.60
+npx pod-install
+
+# RN < 0.60
 react-native link @react-native-community/peek-and-pop
 ```
 

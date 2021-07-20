@@ -45,7 +45,7 @@
     "husky": "^3.0.0",
     "prettier": "^1.18.2",
     "react": "^16.5.0",
-    "react-native": "^0.59.4",
+    "react-native": "^0.62.3",
     "typescript": "^3.5.2"
   },
   "husky": {
